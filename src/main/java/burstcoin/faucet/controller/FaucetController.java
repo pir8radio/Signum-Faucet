@@ -105,7 +105,7 @@ public class FaucetController
       Arrays.asList('2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S',
                     'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-'));
 
-    faucetAccountRS = "BURST-" + ReedSolomon.encode(Convert.parseUnsignedLong(BurstcoinFaucetProperties.getNumericFaucetAccountId()));
+    faucetAccountRS = "S-" + ReedSolomon.encode(Convert.parseUnsignedLong(BurstcoinFaucetProperties.getNumericFaucetAccountId()));
   }
 
   public void handleUpdatedStats(StatsData statsData)
@@ -429,12 +429,12 @@ public class FaucetController
       accountId = accountId.trim();
 
       // convert numeric account id
-      if(!accountId.contains("BURST"))
+      if(!accountId.contains("S"))
       {
         try
         {
           Long unsignedLong = Convert.parseUnsignedLong(accountId);
-          accountId = "BURST-" + ReedSolomon.encode(unsignedLong);
+          accountId = "S-" + ReedSolomon.encode(unsignedLong);
           accountCheck = new AccountCheck(accountId);
         }
         catch(Exception e)
